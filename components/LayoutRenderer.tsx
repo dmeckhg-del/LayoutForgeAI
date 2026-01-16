@@ -79,7 +79,7 @@ export const LayoutRenderer: React.FC<LayoutRendererProps> = ({ data, content, p
                 <div className={`${outerContainerWidth} mb-8 opacity-40 px-4 flex justify-between text-xs font-mono uppercase tracking-widest mix-blend-multiply dark:mix-blend-screen`}>
                     <span>{data.themeName}</span>
                     <span className="flex items-center gap-2">
-                        {data.layoutType.toUpperCase()}
+                        {data.layoutType?.toUpperCase()}
                     </span>
                 </div>
 
