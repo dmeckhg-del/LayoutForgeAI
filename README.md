@@ -1,20 +1,51 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🚀 快速上手：本地运行与部署你的 AI 项目
 
-# Run and deploy your AI Studio app
+恭喜你！你已经拥有了一个强大的 **AI Studio** 应用。无论你是想深度定制功能，还是希望在本地环境中进行极致调试，本指南都将助你一键开启本地开发之旅。
 
-This contains everything you need to run your app locally.
+你可以随时通过以下链接在 **AI Studio** 中查看并管理你的应用：  
+🔗 [点击访问 AI Studio 应用](https://ai.studio/apps/drive/1_34eyJpyBiiEmp_Q04LS0DNRcTbciZ1k)
 
-View your app in AI Studio: https://ai.studio/apps/drive/1_34eyJpyBiiEmp_Q04LS0DNRcTbciZ1k
+---
 
-## Run Locally
+## 🛠️ 本地运行环境配置
 
-**Prerequisites:**  Node.js
+在开始之前，请确保你的电脑已安装 **Node.js** 环境。按照以下简单的三个步骤，即可让 AI 在你的本地机器上“跑”起来：
 
+1.  **安装依赖**：打开终端，输入指令安装必要的库文件。
+    `npm install`
+2.  **配置密钥**：在项目根目录找到 `.env.local` 文件，将你的 `GEMINI_API_KEY` 填入其中。这是连接 **Gemini AI** 的核心凭证。
+3.  **启动应用**：一切就绪，运行下方指令开启开发模式。
+    `npm run dev`
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+
+## 🪄 LayoutForge AI：重构你的排版审美
+
+在碎片化阅读的内容创作时代，**LayoutForge** 致力于彻底解决开发者与创作者的“排版焦虑”。你只需要负责**核心内容**的输入，剩下的**专业感**与**审美力**，全部交给 AI。
+
+---
+
+## 🎨 智能风格设计：让灵感实时具象化
+
+这不仅仅是简单的“换肤”，而是一场深度的视觉重构。你只需在左下角输入你的设计灵感（例如：**“黑客帝国风格，绿色代码雨背景”**），AI 将实时构建：
+
+*   **配色方案**：系统会自动匹配背景色与文字对比度，确保视觉舒适。
+*   **字体排印**：精选适合风格的字体族，并自动设定**层级分明**的字号。
+*   **装饰元素**：细腻的投影、边框以及圆角细节，让排版拥有**呼吸感**。
+
+---
+
+## ✨ 内容自动润色：让文字更有温度
+
+在生成视觉样式的同时，AI 会对你的 Markdown 原文进行深度优化：
+
+*   **情绪表达**：根据语境，自动匹配并插入精准的 **Emoji** 🚀，增强亲和力。
+*   **易读性优化**：重塑长难句，确保段落结构**短小精悍**，阅读不疲劳。
+*   **逻辑提炼**：自动提取核心卖点，并转化为结构化的 **H2 标题**。
+
+---
+
+## 📐 沉浸式布局：适配多元场景
+
+*   **单页卡片 (Card)**：采用优雅的阴影边框设计，营造出极佳的**悬浮感**。这不仅是最适合**论文总结**、**深度博客**的排版方式，更是提升内容质感的“秘密武器”。
+
