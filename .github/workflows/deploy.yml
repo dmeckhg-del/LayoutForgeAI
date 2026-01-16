@@ -1,0 +1,59 @@
+name: Build and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'App.tsx'
+      - 'index.tsx'
+      - 'index.html'
+      - 'components/**'
+      - 'constants.ts'
+      - 'types.ts'
+      - '.github/workflows/deploy.yml'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm ci
+
+      - name: Build project
+        run: npm run build -- --outDir=./dist
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Deploy to dmeckhg-del.github.io
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          external_repository: dmeckhg-del/dmeckhg-del.github.io
+          publish_dir: ./dist
+          publish_branch: main
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Deploy from Competition-Detail-Page ${{ github.sha }}'
