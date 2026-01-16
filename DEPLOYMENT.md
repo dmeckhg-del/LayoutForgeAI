@@ -22,7 +22,7 @@
    1. 访问：https://github.com/settings/tokens
    2. 点击 **"Generate new token"** → **"Generate new token (classic)"**
    3. 填写信息：
-      - **Note**: `Competition-Detail-Page Deploy Token`
+      - **Note**: `LayoutForgeAI-Page Deploy Token`
       - **Expiration**: 选择过期时间（建议 90 天或 No expiration）
       - **勾选权限**（必须全部勾选）：
         - ✅ **`repo`** - 完整仓库控制权限（这会自动包含以下所有子权限）
@@ -40,13 +40,13 @@
    1. 访问：https://github.com/settings/tokens
    2. 点击 **"Generate new token"** → **"Generate new token (fine-grained)"**
    3. 填写信息：
-      - **Name**: `Competition-Detail-Page Deploy Token`
+      - **Name**: `LayoutForgeAI-Page Deploy Token`
       - **Expiration**: 选择过期时间
       - **Description**: `Auto-deploy to dmeckhg-del.github.io`
    4. **资源授权**（Repository access）：
       - 选择 **"Only select repositories"**
       - **必须同时添加两个仓库**：
-        - ✅ `Competition-Detail-Page`（源仓库）
+        - ✅ `LayoutForgeAI-Page`（源仓库）
         - ✅ `dmeckhg-del.github.io`（目标仓库）← **很重要！**
    5. **权限设置**（Permissions）：
       - ✅ **Contents**: **Read and write**
@@ -57,7 +57,7 @@
    7. **立即复制 token**
 
 2. **在源仓库配置 Secret**
-   - 访问：https://github.com/dmeckhg-del/Competition-Detail-Page/settings/secrets/actions
+   - 访问：https://github.com/dmeckhg-del/LayoutForgeAI-Page/settings/secrets/actions
    - 点击 **"New repository secret"**
    - **Name**: `DEPLOY_TOKEN`
    - **Secret**: 粘贴刚才复制的 PAT
@@ -88,7 +88,7 @@
 ### 手动触发
 
 可以在 GitHub Actions 页面手动运行工作流：
-1. 访问 https://github.com/dmeckhg-del/Competition-Detail-Page/actions
+1. 访问 https://github.com/dmeckhg-del/LayoutForgeAI-Page/actions
 2. 选择 "Build and Deploy to GitHub Pages"
 3. 点击 "Run workflow"
 
@@ -213,7 +213,7 @@ Please make sure you have the correct access rights and the repository exists.
 
 ## 仍然无法解决？
 
-1. 查看 GitHub Actions 日志：https://github.com/dmeckhg-del/Competition-Detail-Page/actions
+1. 查看 GitHub Actions 日志：https://github.com/dmeckhg-del/LayoutForgeAI-Page/actions
 2. 检查 workflow 运行的详细错误信息
 3. 尝试手动运行 workflow 以排除 webhook 问题
 4. 确认所有 secrets 都已正确配置
@@ -224,7 +224,7 @@ Please make sure you have the correct access rights and the repository exists.
 
 ```
 ┌─────────────────────────────┐
-│  Competition-Detail-Page    │
+│  LayoutForgeAI-Page    │
 │  (源仓库)                   │
 │                             │
 │  - Push 到 main 分支         │
