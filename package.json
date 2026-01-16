@@ -1,25 +1,26 @@
 {
-  "name": "layoutforge-ai",
+  "name": "layout-forge-ai",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "react-dom": "^19.2.3",
-    "@google/genai": "^1.37.0",
-    "lucide-react": "^0.562.0",
-    "react": "^19.2.3",
-    "react-markdown": "9.0.1",
-    "openai": "4.28.0"
+    "@google/genai": "^0.1.1",
+    "lucide-react": "^0.439.0",
+    "openai": "^4.56.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.2"
   }
 }

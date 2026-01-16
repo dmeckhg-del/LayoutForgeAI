@@ -2,7 +2,6 @@ import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { DocumentDesign } from "../types";
 
 // --- Configuration ---
-const API_KEY = process.env.API_KEY;
 const CHUNK_SIZE = 1000; // User requested batch size
 
 // --- System Instructions ---
@@ -96,8 +95,9 @@ export const generateLayoutFromPrompt = async (
   onProgress?: (type: 'design' | 'content', data: any) => void
 ): Promise<{ design: DocumentDesign; content: string }> => {
   
-  if (!API_KEY) throw new Error("API Key is missing.");
-  const ai = new GoogleGenAI({ apiKey: API_KEY });
+  // Directly check and use process.env.API_KEY as per guidelines
+  if (!process.env.API_KEY) throw new Error("API Key is missing.");
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   // 1. Generate Design (using first chunk as sample)
   const sampleContent = fullContent.slice(0, 800);
