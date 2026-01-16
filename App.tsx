@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { DocumentDesign, INITIAL_DESIGN, Language, ServiceProvider } from './types';
 import { OpenAIConfig, generateLayoutWithOpenAI } from './services/openaiService';
@@ -6,8 +7,9 @@ import { TRANSLATIONS, DEFAULT_MARKDOWN } from './constants';
 import { EditorPanel } from './components/EditorPanel';
 import { PreviewPanel } from './components/PreviewPanel';
 import { AiSettingsModal } from './components/AiSettingsModal';
+import { ToastProvider, useToast } from './components/ToastSystem';
 
-const App: React.FC = () => {
+const AppContent: React.FC = () => {
   // --- State ---
   const [designData, setDesignData] = useState<DocumentDesign>(INITIAL_DESIGN);
   const [markdownContent, setMarkdownContent] = useState(DEFAULT_MARKDOWN);
@@ -27,6 +29,7 @@ const App: React.FC = () => {
     model: 'gpt-4-turbo-preview'
   });
 
+  const { addToast } = useToast();
   const t = TRANSLATIONS[lang];
 
   // --- Handlers ---
@@ -69,8 +72,11 @@ const App: React.FC = () => {
             designToUse
           );
       }
+      addToast(t.generate + " " + t.copied, 'success'); // Reusing translation keys creatively or just success
     } catch (err: any) {
-      setError(err.message || t.error);
+      const msg = err.message || t.error;
+      setError(msg);
+      addToast(msg, 'error');
     } finally {
       setIsGenerating(false);
     }
@@ -113,6 +119,8 @@ const App: React.FC = () => {
         setPreviewMode={setPreviewMode}
         lang={lang}
         t={t}
+        provider={provider}
+        openaiConfig={openaiConfig}
       />
       
        {/* Modal */}
@@ -127,6 +135,14 @@ const App: React.FC = () => {
       />
 
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <ToastProvider>
+      <AppContent />
+    </ToastProvider>
   );
 };
 

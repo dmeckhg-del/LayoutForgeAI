@@ -1,7 +1,9 @@
+
 import React from 'react';
 import { LayoutRenderer } from './LayoutRenderer';
 import { ExportToolbar } from './ExportToolbar';
-import { DocumentDesign, Language } from '../types';
+import { DocumentDesign, Language, ServiceProvider } from '../types';
+import { OpenAIConfig } from '../services/openaiService';
 
 interface PreviewPanelProps {
   designData: DocumentDesign;
@@ -10,6 +12,8 @@ interface PreviewPanelProps {
   setPreviewMode: (mode: 'desktop' | 'mobile') => void;
   lang: Language;
   t: any;
+  provider: ServiceProvider;
+  openaiConfig: OpenAIConfig;
 }
 
 export const PreviewPanel: React.FC<PreviewPanelProps> = ({
@@ -17,7 +21,9 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
   markdownContent,
   previewMode,
   setPreviewMode,
-  t
+  t,
+  provider,
+  openaiConfig
 }) => {
   return (
     <main className="flex-1 bg-slate-200 flex flex-col min-w-[350px] relative transition-all">
@@ -28,6 +34,9 @@ export const PreviewPanel: React.FC<PreviewPanelProps> = ({
         previewMode={previewMode}
         setPreviewMode={setPreviewMode}
         t={t}
+        markdownContent={markdownContent}
+        provider={provider}
+        openaiConfig={openaiConfig}
       />
 
       {/* Canvas */}

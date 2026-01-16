@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react';
 import { Sparkles, Bot, Globe, Palette, RefreshCw, Wand2 } from 'lucide-react';
 import { DocumentDesign, Language, ServiceProvider } from '../../types';
 import { generateDesignVariations } from '../../services/geminiService';
 import { DesignVariations } from './DesignVariations';
+import { useToast } from '../ToastSystem';
 
 interface ConfigTabProps {
   prompt: string;
@@ -33,10 +35,9 @@ export const ConfigTab: React.FC<ConfigTabProps> = ({
   setShowAiSettings,
   t
 }) => {
+  const { addToast } = useToast();
   
   // Local state for style variations options
-  // Ideally this might be lifted if we wanted to persist options across tab changes,
-  // but keeping it here for now makes the config tab self-contained.
   const [designOptions, setDesignOptions] = useState<DocumentDesign[]>([]);
   const [isDesigning, setIsDesigning] = useState(false);
 
@@ -47,9 +48,10 @@ export const ConfigTab: React.FC<ConfigTabProps> = ({
       // Currently only implemented for Gemini in the service
       const variations = await generateDesignVariations(prompt, 'auto');
       setDesignOptions(variations);
-    } catch (e) {
+      addToast('2 style variations generated!', 'success');
+    } catch (e: any) {
       console.error(e);
-      // Optional: Add toast error handling here
+      addToast(e.message || 'Failed to generate styles', 'error');
     } finally {
       setIsDesigning(false);
     }
