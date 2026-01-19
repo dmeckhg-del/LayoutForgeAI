@@ -17,6 +17,8 @@ export interface AppState {
   provider: ServiceProvider;
   geminiKey: string;
   openaiConfig: OpenAIConfig;
+  wechatHtml: string | null;
+  previewType: 'normal' | 'wechat';
 }
 
 export interface AppDispatch {
@@ -32,6 +34,8 @@ export interface AppDispatch {
   setProvider: (provider: ServiceProvider | ((prev: ServiceProvider) => ServiceProvider)) => void;
   setGeminiKey: (key: string | ((prev: string) => string)) => void;
   setOpenaiConfig: (config: OpenAIConfig | ((prev: OpenAIConfig) => OpenAIConfig)) => void;
+  setWechatHtml: (html: string | null | ((prev: string | null) => string | null)) => void;
+  setPreviewType: (type: 'normal' | 'wechat' | ((prev: 'normal' | 'wechat') => 'normal' | 'wechat')) => void;
   resetDesign: () => void;
 }
 
@@ -51,7 +55,9 @@ const initialState: AppState = {
     apiKey: '',
     baseUrl: 'https://api.openai.com/v1',
     model: 'gpt-4-turbo-preview'
-  }
+  },
+  wechatHtml: null,
+  previewType: 'normal'
 };
 
 export const appStore = create<AppState & AppDispatch>()(
@@ -106,6 +112,14 @@ export const appStore = create<AppState & AppDispatch>()(
         set((state) => ({
           openaiConfig: typeof config === 'function' ? (config as (prev: OpenAIConfig) => OpenAIConfig)(state.openaiConfig) : config
         })),
+      setWechatHtml: (html) =>
+        set((state) => ({
+          wechatHtml: typeof html === 'function' ? (html as (prev: string | null) => string | null)(state.wechatHtml) : html
+        })),
+      setPreviewType: (type) =>
+        set((state) => ({
+          previewType: typeof type === 'function' ? (type as (prev: 'normal' | 'wechat') => 'normal' | 'wechat')(state.previewType) : type
+        })),
       resetDesign: () => set({ designData: INITIAL_DESIGN })
     }),
     {
@@ -145,4 +159,8 @@ export const useGeminiKey = () => appStore((s) => s.geminiKey);
 export const useSetGeminiKey = () => appStore((s) => s.setGeminiKey);
 export const useOpenaiConfig = () => appStore((s) => s.openaiConfig);
 export const useSetOpenaiConfig = () => appStore((s) => s.setOpenaiConfig);
+export const useWechatHtml = () => appStore((s) => s.wechatHtml);
+export const useSetWechatHtml = () => appStore((s) => s.setWechatHtml);
+export const usePreviewType = () => appStore((s) => s.previewType);
+export const useSetPreviewType = () => appStore((s) => s.setPreviewType);
 export const useResetDesign = () => appStore((s) => s.resetDesign);

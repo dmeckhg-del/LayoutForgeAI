@@ -147,8 +147,8 @@ export const ExportToolbar: React.FC = () => {
 
       await streamWeChatArticleFromMarkdown(
         aiConfig,
+        designData,
         markdownContent,
-        highlightColor,
         (index, total) => {
           setTotalCards(total);
           setCurrentCardIndex(index);
